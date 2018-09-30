@@ -1,7 +1,7 @@
 import os
 import sys
 
-# Operacny system 
+# Operacny system
 print(os.uname())
 
 
@@ -19,3 +19,10 @@ while True:
         if a[0] == '$' and a[len(a)-4:] == "\\r\\n":
             a = a[:len(a)-4]
             print (a)
+
+#
+# Overi ci NMEA veta a checksum sedia, vracia True, False
+#
+#
+def NMEAchecksum(NMEA_veta):
+    if 
