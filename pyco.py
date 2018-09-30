@@ -38,7 +38,6 @@ def NMEAchecksum(NMEA_veta):
 print(os.uname())
 
 
-
 from machine import UART
 import sys
 
@@ -50,5 +49,9 @@ while True:
 
     NMEA , NMEA_stav = NMEAchecksum (a)
     if NMEA_stav:
-        print(NMEA)
-        print ('_____________________________________________________________________________________')
+        if 'GPGLL' in NMEA:
+            print(NMEA)
+            print ('_____________________________________________________________________________________')
+            veta = NMEA.split(',')
+            print (veta)
+            print (veta[0])
