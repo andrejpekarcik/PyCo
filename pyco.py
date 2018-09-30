@@ -18,11 +18,18 @@ while True:
         a = str(a).replace('b','').replace('\'','')
         if a[0] == '$' and a[len(a)-4:] == "\\r\\n":
             a = a[:len(a)-4]
-            print (a)
+            print (a,NMEA_veta(a))
 
 #
 # Overi ci NMEA veta a checksum sedia, vracia True, False
 #
-#
 def NMEAchecksum(NMEA_veta):
-    if 
+
+    if NMEA_veta.count('*') != 1 and NMEA_veta[len(NMEA_veta)-3]:
+        return False
+
+    # ak je na zaciatku $ tak sa odstrani
+    if NMEA_veta[0] == "$":
+        NMEA_veta = NMEA_veta.replace('$','')
+
+    return True
