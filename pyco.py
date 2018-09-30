@@ -15,9 +15,6 @@ while True:
     a= uart.readline()
     if a:
         a = str(a).replace('b','').replace('\'',s'')
-        ##print (a)
-        #
-        #
         if a[0] == '$' and a[len(a)-4:] == "\\r\\n":
             a = a[:len(a)-4]
             print (a)
