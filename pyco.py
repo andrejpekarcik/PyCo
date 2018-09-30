@@ -1,5 +1,6 @@
 import os
 import sys
+import NMEA
 
 # Operacny system
 print(os.uname())
@@ -18,4 +19,4 @@ while True:
         a = str(a).replace('b','').replace('\'','')
         if a[0] == '$' and a[len(a)-4:] == "\\r\\n":
             a = a[:len(a)-4]
-            print (a,NMEA_veta(a))
+            print (a,NMEA.NMEAchecksum(a))
