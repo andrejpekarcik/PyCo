@@ -1,5 +1,7 @@
 import os
 import sys
+
+# Operacny system 
 print(os.uname())
 
 
@@ -10,7 +12,6 @@ import sys
 uart = UART(1, 9600)
 uart.init(9600, bits=8, parity=None, stop=1, pins=('P4','P3'), timeout_chars=5)
 
-print(1)
 while True:
     a= uart.readline()
     if a:
