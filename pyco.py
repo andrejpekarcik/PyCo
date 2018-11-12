@@ -49,7 +49,7 @@ while True:
 
     NMEA , NMEA_stav = NMEAchecksum (a)
     if NMEA_stav:
-        if 'GPGLL' in NMEA:
+        if 'GPRMC' in NMEA:
             print(NMEA)
             print ('_____________________________________________________________________________________')
             veta = NMEA.split(',')
