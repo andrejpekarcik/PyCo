@@ -40,18 +40,32 @@ print(os.uname())
 
 from machine import UART
 import sys
+import time
 
-uart = UART(1, 9600)
-uart.init(9600, bits=8, parity=None, stop=1, pins=('P4','P3'), timeout_chars=5)
+#uart = UART(1, 9600)
+#uart.init(9600, bits=8, parity=None, stop=1, pins=('P4','P3'), timeout_chars=5)
+
+uartSigfox = UART(0, 9600)
+uartSigfox.init(9600, bits=8, parity=None, stop=1, pins=('P22','P23'))
 
 while True:
-    a= uart.readline()
 
-    NMEA , NMEA_stav = NMEAchecksum (a)
-    if NMEA_stav:
-        if 'GPRMC' in NMEA:
-            print(NMEA)
-            print ('_____________________________________________________________________________________')
-            veta = NMEA.split(',')
-            print (veta)
-            print (veta[0])
+#    uartSigfox.write('AT$SF=BA')
+    uartSigfox.write('\r\nAT$SF=FFDF')
+    time.sleep(1)
+    if (uartSigfox.any()>0):
+        print (uartSigfox.readline())
+
+
+
+
+#while True:
+#    a= uart.readline()
+#
+#    NMEA , NMEA_stav = NMEAchecksum (a)
+#    if NMEA_stav:
+#        if 'GPRMC' in NMEA:
+#            print(NMEA)
+##            veta = NMEA.split(',')
+#            print (veta)
+#            print (veta[0])
