@@ -50,11 +50,10 @@ uartSigfox.init(9600, bits=8, parity=None, stop=1, pins=('P22','P23'))
 
 while True:
 
-#    uartSigfox.write('AT$SF=BA')
-    uartSigfox.write('\r\nAT$SF=FFDF')
+    uartSigfox.write('\r\nAT$SF=FF1234567890CC')
     time.sleep(1)
     if (uartSigfox.any()>0):
-        print (uartSigfox.readline())
+        print (uartSigfox.readln())
 
 
 
