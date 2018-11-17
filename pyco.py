@@ -42,24 +42,21 @@ from machine import UART
 import sys
 import time
 
-#uart = UART(1, 9600)
-#uart.init(9600, bits=8, parity=None, stop=1, pins=('P4','P3'), timeout_chars=5)
+#  UART start
+uart = UART(1, 9600)
+uart.init(9600, bits=8, parity=None, stop=1, pins=('P23','P22'), timeout_chars=5)
 
-uartSigfox = UART(0, 9600)
-uartSigfox.init(9600, bits=8, parity=None, stop=1, pins=('P22','P23'))
+uart.write('\r\nAT$SF=FF1234567890CC')
+time.sleep(1)
+uart.write('\r\nAT$SF=FF1234567890CC')
+
+
+print ('ads')
 
 while True:
-
-    uartSigfox.write('\r\nAT$SF=FF1234567890CC')
-    time.sleep(1)
-    if (uartSigfox.any()>0):
-        print (uartSigfox.readln())
-
-
-
-
-#while True:
-#    a= uart.readline()
+    if (uart.any()):
+        a= uart.readline()
+        print(a)
 #
 #    NMEA , NMEA_stav = NMEAchecksum (a)
 #    if NMEA_stav:
