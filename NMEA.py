@@ -11,3 +11,4 @@ def NMEAchecksum(NMEA_veta):
         NMEA_veta = NMEA_veta.replace('$','')
 
     return True
+pass
