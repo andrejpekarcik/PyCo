@@ -54,14 +54,11 @@ uart.write('\r\nAT$SF=FF1234567890CC')
 print ('ads')
 
 while True:
-    if (uart.any()):
-        a= uart.readline()
-        print(a)
-#
-#    NMEA , NMEA_stav = NMEAchecksum (a)
-#    if NMEA_stav:
-#        if 'GPRMC' in NMEA:
-#            print(NMEA)
-##            veta = NMEA.split(',')
-#            print (veta)
-#            print (veta[0])
+    a = uart.readln()
+    NMEA , NMEA_stav = NMEAchecksum (a)
+    if NMEA_stav:
+        if 'GPRMC' in NMEA:
+            print(NMEA)
+            veta = NMEA.split(',')
+            print (veta)
+            print (veta[0])
