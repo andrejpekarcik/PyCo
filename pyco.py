@@ -62,7 +62,7 @@ while True:
             veta = NMEA.split(',')
             print (veta)
             stav = veta[2]
-            sirka = veta[3]
-            dlzka = veta[5]
+            sirka = veta[3].replace('.','')
+            dlzka = veta[5].replace('.','')
 
             print (stav, sirka, dlzka)
