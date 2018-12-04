@@ -40,6 +40,7 @@ print(os.uname())
 
 # Vypnut LED
 pycom.heartbeat(False)
+pycom.rgbled(0x7f0000)
 
 from machine import UART
 import sys

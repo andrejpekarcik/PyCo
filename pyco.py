@@ -57,10 +57,10 @@ print ('ads')
 while True:
     a = uart.readline()
     NMEA , NMEA_stav = NMEAchecksum (a)
-
+    pycom.rgbled(0x7f7f00)
     if NMEA_stav:
         if 'GPRMC' in NMEA:
-            pycom.rgbled(0xff00) 
+            pycom.rgbled(0xff00)
             print(NMEA)
             veta = NMEA.split(',')
             print (veta)
