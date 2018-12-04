@@ -50,14 +50,17 @@ uart.write('\r\nAT$SF=FF1234567890CC')
 time.sleep(1)
 uart.write('\r\nAT$SF=FF1234567890CC')
 
+pycom.heartbeat(False)
 
 print ('ads')
 
 while True:
     a = uart.readline()
     NMEA , NMEA_stav = NMEAchecksum (a)
+
     if NMEA_stav:
         if 'GPRMC' in NMEA:
+            pycom.rgbled(0xff00) 
             print(NMEA)
             veta = NMEA.split(',')
             print (veta)
