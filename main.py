@@ -2,7 +2,16 @@ import os
 import sys
 import pycom
 
+
 #
+# Odvysiela sigfox spravu najviac 14 bajtov
+#
+
+def sigfox_poslat (sprava):
+    msg = '\r\nAT$SF=' + sprava
+    uart.write(msg)
+
+
 # Overi ci NMEA veta a checksum sedia, vracia True, False
 #
 def NMEAchecksum(NMEA_veta):
