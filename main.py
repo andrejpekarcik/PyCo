@@ -2,8 +2,11 @@ import os
 import sys
 import pycom
 
+cervena = 0x7f0000
+zelena = 0x00FF00
+modra = 0x0000FF
+zlta = 0x7f7f00
 
-#
 # Odvysiela sigfox spravu najviac 14 bajtov
 #
 
@@ -14,6 +17,7 @@ def sigfox_poslat (sprava):
 
 # Overi ci NMEA veta a checksum sedia, vracia True, False
 #
+
 def NMEAchecksum(NMEA_veta):
 
     # odstranim ' a 'b'
@@ -49,7 +53,7 @@ print(os.uname())
 
 # Vypnut LED
 pycom.heartbeat(False)
-pycom.rgbled(0x7f0000)
+pycom.rgbled(cervena)
 
 from machine import UART
 import sys
@@ -59,11 +63,9 @@ import time
 uart = UART(1, 9600)
 uart.init(9600, bits=8, parity=None, stop=1, pins=('P23','P22'), timeout_chars=5)
 
-uart.write('\r\nAT$SF=FF1234567890CC')
-time.sleep(1)
-uart.write('\r\nAT$SF=FF1234567890CC')
+pycom.rgbled(zlta)
 
-
+sigfox_poslat('')
 print ('ads')
 
 while True:
@@ -75,12 +77,17 @@ while True:
             veta = NMEA.split(',')
             print (veta)
             stav = veta[2]
-            sirka = veta[3].replace('.','')[:5]
-            dlzka = veta[5].replace('.','')[:5]
+            sirka = veta[3].replace('.','')
+            dlzka = veta[5].replace('.','')
 
             print (stav, sirka, dlzka)
+            print (sirka + dlzka)
 
             if stav == 'A':
-                pycom.rgbled(0x00FF00)
+                pycom.rgbled(zelena)
+                sigfox_poslat (sirka + dlzka)
+                time.sleep (500)
             else:
-                pycom.rgbled(0x0000FF)
+                pycom.rgbled(modra)
+    else:
+            pycom.rgbled(modra)
