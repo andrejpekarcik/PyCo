@@ -85,8 +85,10 @@ while True:
 
             if stav == 'A':
                 pycom.rgbled(zelena)
-                sigfox_poslat (sirka + dlzka)
-                time.sleep (500)
+                sigfox_poslat (sirka)
+                sigfox_poslat(dlzka)
+
+                time.sleep (30)
             else:
                 pycom.rgbled(modra)
     else:
