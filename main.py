@@ -77,15 +77,16 @@ while True:
             veta = NMEA.split(',')
             print (veta)
             stav = veta[2]
-            sirka = veta[3].replace('.','')
-            dlzka = veta[5].replace('.','')
+            sirka = veta[3].replace('.','')[:10]
+            dlzka = veta[5].replace('.','')[:10]
 
             print (stav, sirka, dlzka)
             print (sirka + dlzka)
 
             if stav == 'A':
                 pycom.rgbled(zelena)
-                sigfox_poslat (sirka)
+                #sigfox_poslat (sirka)
+                time.sleep(5)
                 sigfox_poslat(dlzka)
 
                 time.sleep (30)
