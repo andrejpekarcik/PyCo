@@ -11,7 +11,10 @@ zlta = 0x7f7f00
 #
 
 def sigfox_poslat (sprava):
+    if len (sprava) % 2 == 1:
+        sprava = sprava + '0'
     msg = '\r\nAT$SF=' + sprava
+    print (msg)
     uart.write(msg)
 
 
@@ -65,7 +68,6 @@ uart.init(9600, bits=8, parity=None, stop=1, pins=('P23','P22'), timeout_chars=5
 
 pycom.rgbled(zlta)
 
-sigfox_poslat('')
 print ('ads')
 
 while True:
@@ -80,16 +82,20 @@ while True:
             sirka = veta[3].replace('.','')[:10]
             dlzka = veta[5].replace('.','')[:10]
 
-            print (stav, sirka, dlzka)
+            print (stav, sirka, dlzka, len (sirka), len (dlzka))
             print (sirka + dlzka)
 
             if stav == 'A':
                 pycom.rgbled(zelena)
+<<<<<<< HEAD
                 #sigfox_poslat (sirka)
                 time.sleep(5)
+=======
+                sigfox_poslat(sirka)
+>>>>>>> 58a9703bd3d5a964af5d5e820a66c250d45db589
                 sigfox_poslat(dlzka)
 
-                time.sleep (30)
+                time.sleep (10)
             else:
                 pycom.rgbled(modra)
     else:
