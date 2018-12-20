@@ -15,6 +15,8 @@ def sigfox_poslat (sprava):
         sprava = sprava + '0'
     msg = '\r\nAT$SF=' + sprava
     print (msg)
+    if len(msg) < 6:
+        return
     uart.write(msg)
 
 
@@ -89,11 +91,10 @@ while True:
                 pycom.rgbled(zelena)
                 #sigfox_poslat (sirka)
                 time.sleep(5)
-
                 sigfox_poslat(sirka)
                 sigfox_poslat(dlzka)
 
-                time.sleep (10)
+                time.sleep (40)
             else:
                 pycom.rgbled(modra)
     else:
