@@ -87,12 +87,10 @@ while True:
 
             if stav == 'A':
                 pycom.rgbled(zelena)
-<<<<<<< HEAD
                 #sigfox_poslat (sirka)
                 time.sleep(5)
-=======
+
                 sigfox_poslat(sirka)
->>>>>>> 58a9703bd3d5a964af5d5e820a66c250d45db589
                 sigfox_poslat(dlzka)
 
                 time.sleep (10)
