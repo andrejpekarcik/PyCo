@@ -1,7 +1,7 @@
 import os
 import sys
 import pycom
-import Pylib.py
+import Pylib
 
 cervena = 0x7f0000
 zelena = 0x00FF00
