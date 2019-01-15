@@ -6,6 +6,7 @@ from network import Sigfox
 import socket
 from machine import UART
 import time
+import deepsleep
 
 cervena = 0x7f0000
 zelena = 0x00FF00
