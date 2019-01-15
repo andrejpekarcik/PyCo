@@ -1,7 +1,7 @@
 import os
 import sys
 import pycom
-import Pylib
+#import Pylib
 from network import Sigfox
 import socket
 from machine import UART
@@ -43,41 +43,23 @@ def NMEAchecksum(NMEA_veta):
 
     return NMEA_veta,True
 
-# Odvysiela sigfox spravu najviac 14 bajtov
-#
-def sigfox_poslat (sprava):
-    if len (sprava) % 2 == 1:
-        sprava = sprava + '0'
-    s.send(sprava)
-
-
-# Sigfox sigfox_inicializacia
-#
-def sigfox_inicializacia():
-    #
-    global s
-​    # init Sigfox for RCZ1 (Europe)
-    sigfox = Sigfox(mode=Sigfox.SIGFOX, rcz=Sigfox.RCZ1)
-​    # create a Sigfox socket
-    s = socket.socket(socket.AF_SIGFOX, socket.SOCK_RAW)
-​    # make the socket blocking
-    s.setblocking(True)
-​    # configure it as uplink only
-    s.setsockopt(socket.SOL_SIGFOX, socket.SO_RX, False)
-​
-# Operacny systemmain
+# Operacny system zobrazit
 print(os.uname())
 print ('----------------')
 
+
 # sigfox start
-sigfox_inicializacia()
-sigfox_poslat('1')
+global s
+sigfox = Sigfox(mode=Sigfox.SIGFOX, rcz=Sigfox.RCZ1)
+s = socket.socket(socket.AF_SIGFOX, socket.SOCK_RAW)
+s.setblocking(True)
+s.setsockopt(socket.SOL_SIGFOX, socket.SO_RX, False)
 
 # Vypnut LED
 pycom.heartbeat(False)
 pycom.rgbled(cervena)
 
-#  UART start
+#  UART pre GPS start
 uart = UART(1, 9600)
 uart.init(9600, bits=8, parity=None, stop=1, pins=('P23','P22'), timeout_chars=5)
 
