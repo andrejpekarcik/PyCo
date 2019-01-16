@@ -29,3 +29,22 @@ def NMEAchecksum(NMEA_veta):
         return None, False
 
     return NMEA_veta,True
+
+
+
+# spracuje vystup zo NMEAchecksum a vrati GPS polohu
+# vystup: sirka, dlzka, sever/juh, vychod/zapad
+#
+
+def NMEA_poloha (NMEA_veta):
+    if 'GPRMC' in NMEA:
+        veta = NMEA.split(',')
+        stav = veta[2]
+        sirka = veta[3].replace('.','')[:10]
+        dlzka = veta[5].replace('.','')[:10]
+
+        #print (stav, sirka, dlzka, len (sirka), len (dlzka))
+        #print (sirka + dlzka)
+
+        if stav == 'A':
+            return sirka, dlzka, True

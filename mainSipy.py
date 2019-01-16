@@ -83,7 +83,7 @@ uart.init(9600, bits=8, parity=None, stop=1, pins=('P23','P22'), timeout_chars=5
 
 pycom.rgbled(zlta)
 
-print ('--SiPy--------------------------')
+print ('--mainSiPy--------------------------')
 
 while True:
     a = uart.readline()
