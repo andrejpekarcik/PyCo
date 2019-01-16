@@ -7,8 +7,8 @@ import socket
 from machine import UART
 import time
 import deepsleep
-import Pylib
-from Pylib import NMEAchecksum
+import PyColib
+from PyColib import NMEAchecksum
 
 cervena = 0x7f0000
 zelena = 0x00FF00
