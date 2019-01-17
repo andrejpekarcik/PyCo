@@ -1,3 +1,8 @@
+cervena = 0x7f0000
+zelena = 0x00FF00
+modra = 0x0000FF
+zlta = 0x7f7f00
+
 # Overi ci NMEA veta a checksum sedia, vracia True, False
 #
 
@@ -48,3 +53,17 @@ def NMEA_poloha (NMEA_veta):
 
         if stav == 'A':
             return sirka, dlzka, True
+
+
+# Sigfox sigfox_inicializacia
+#
+def sigfox_inicializacia():
+    global s
+​    # init Sigfox for RCZ1 (Europe)
+    sigfox = Sigfox(mode=Sigfox.SIGFOX, rcz=Sigfox.RCZ1)
+​    # create a Sigfox socket
+    s = socket.socket(socket.AF_SIGFOX, socket.SOCK_RAW)
+​    # make the socket blocking
+    s.setblocking(True)
+​    # configure it as uplink only
+    s.setsockopt(socket.SOL_SIGFOX, socket.SO_RX, False)

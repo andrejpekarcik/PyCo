@@ -8,27 +8,14 @@ from machine import UART
 import time
 import deepsleep
 import PyColib
-from PyColib import NMEAchecksum
-
-cervena = 0x7f0000
-zelena = 0x00FF00
-modra = 0x0000FF
-zlta = 0x7f7f00
-# Overi ci NMEA veta a checksum sedia, vracia True, False
-#
 
 
 # Operacny system zobrazit
 print(os.uname())
 print ('----------------')
 
-
-# sigfox start
-global s
-sigfox = Sigfox(mode=Sigfox.SIGFOX, rcz=Sigfox.RCZ1)
-s = socket.socket(socket.AF_SIGFOX, socket.SOCK_RAW)
-s.setblocking(True)
-s.setsockopt(socket.SOL_SIGFOX, socket.SO_RX, False)
+sigfox_inicializacia()
+sigfox_poslat(123)
 
 # Vypnut LED
 pycom.heartbeat(False)
@@ -40,7 +27,7 @@ uart.init(9600, bits=8, parity=None, stop=1, pins=('P23','P22'), timeout_chars=5
 
 pycom.rgbled(zlta)
 
-print ('--SiPy--------------------------')
+print ('--SiPy------------------------------------------------------------------')
 
 while True:
     a = uart.readline()
@@ -67,5 +54,3 @@ while True:
                 time.sleep (40)
             else:
                 pycom.rgbled(modra)
-    else:
-            pycom.rgbled(modra)
