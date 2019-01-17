@@ -1,7 +1,7 @@
 import os
 import sys
 import pycom
-#import Pylib
+
 from network import Sigfox
 import socket
 from machine import UART
@@ -10,16 +10,15 @@ import deepsleep
 import PyColib
 
 
-# Operacny system zobrazit
 print(os.uname())
 print ('----------------')
 
-sigfox_inicializacia()
-sigfox_poslat(123)
+#PyColib.sigfox_init(0)
+#PyColib.sigfox_poslat(123)
 
 # Vypnut LED
 pycom.heartbeat(False)
-pycom.rgbled(cervena)
+pycom.rgbled(PyColib.cervena)
 
 #  UART pre GPS start
 uart = UART(1, 9600)

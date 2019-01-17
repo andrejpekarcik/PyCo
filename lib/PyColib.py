@@ -57,7 +57,7 @@ def NMEA_poloha (NMEA_veta):
 
 # Sigfox sigfox_inicializacia
 #
-def sigfox_inicializacia():
+def sigfox_init(a):
     global s
 ​    # init Sigfox for RCZ1 (Europe)
     sigfox = Sigfox(mode=Sigfox.SIGFOX, rcz=Sigfox.RCZ1)
