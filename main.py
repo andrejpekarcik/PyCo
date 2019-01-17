@@ -7,7 +7,7 @@ import socket
 from machine import UART
 import time
 import deepsleep
-import PyColib
+import pyco as pc
 
 
 print(os.uname())
@@ -18,7 +18,7 @@ print ('----------------')
 
 # Vypnut LED
 pycom.heartbeat(False)
-pycom.rgbled(PyColib.cervena)
+pycom.rgbled(pc.cervena)
 
 #  UART pre GPS start
 uart = UART(1, 9600)
