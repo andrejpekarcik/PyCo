@@ -1,3 +1,7 @@
+import os
+import sys
+import pycom
+
 cervena = 0x7f0000
 zelena = 0x00FF00
 modra = 0x0000FF

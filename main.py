@@ -1,4 +1,4 @@
-import os
+import pyco,os
 import sys
 import pycom
 
@@ -7,24 +7,26 @@ import socket
 from machine import UART
 import time
 import deepsleep
-import pyco as pc
 
+
+
+print (deepsleep.PIN_WAKE)
 
 print(os.uname())
 print ('----------------')
 
-#PyColib.sigfox_init(0)
-#PyColib.sigfox_poslat(123)
+pyco.sigfox_init(0)
+pyco.sigfox_poslat(123)
 
 # Vypnut LED
 pycom.heartbeat(False)
-pycom.rgbled(pc.cervena)
+pycom.rgbled(pyco.cervena)
 
 #  UART pre GPS start
 uart = UART(1, 9600)
 uart.init(9600, bits=8, parity=None, stop=1, pins=('P23','P22'), timeout_chars=5)
 
-pycom.rgbled(zlta)
+pc.rgbled(zlta)
 
 print ('--SiPy------------------------------------------------------------------')
 
