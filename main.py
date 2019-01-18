@@ -10,7 +10,7 @@ import deepsleep
 
 
 
-#print (deepsleep.PIN_WAKE)
+print (deepsleep.PIN_WAKE)
 
 #print(os.uname())
 #print ('----------------')
