@@ -10,17 +10,17 @@ import deepsleep
 
 
 
-print ('zxc',deepsleep.PIN_WAKE, pycoco.ZLTA)
+print ('zxc', pycoco.ZLTA)
 
 #print(os.uname())
 #print ('----------------')
 
-pyco.sigfox_init(0)
-pyco.sigfox_poslat(123)
+pycoco.sigfox_init(0)
+pycoco.sigfox_poslat(123)
 
 # Vypnut LED
 pycom.heartbeat(False)
-pycom.rgbled(pyco.cervena)
+pycom.rgbled(pycoco.cervena)
 
 #  UART pre GPS start
 uart = UART(1, 9600)
@@ -32,7 +32,7 @@ print ('--SiPy------------------------------------------------------------------
 
 while True:
     a = uart.readline()
-    NMEA , NMEA_stav = NMEAchecksum (a)
+    NMEA , NMEA_stav = pycoco.NMEAchecksum (a)
     if NMEA_stav:
         if 'GPRMC' in NMEA:
             print(NMEA)
@@ -46,12 +46,12 @@ while True:
             print (sirka + dlzka)
 
             if stav == 'A':
-                pycom.rgbled(zelena)
+                pycom.rgbled(pycoco.zelena)
                 #sigfox_poslat (sirka)
                 time.sleep(5)
-                sigfox_poslat(sirka)
-                sigfox_poslat(dlzka)
+                pycoco.sigfox_poslat(sirka)
+                pycoco.sigfox_poslat(dlzka)
 
                 time.sleep (40)
             else:
-                pycom.rgbled(modra)
+                pycom.rgbled(pycoco.modra)

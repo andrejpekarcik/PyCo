@@ -1,13 +1,17 @@
 import os
 import sys
 import pycom
+from network import Sigfox
+import socket
+from machine import UART
+import time
 
 __version__ = '1.0.0'
 
 cervena = 0x7f0000
 zelena = 0x00FF00
 modra = 0x0000FF
-ZLTA = 0x7f7f00
+zlta = 0x7f7f00
 
 # Overi ci NMEA veta a checksum sedia, vracia True, False
 #
@@ -60,16 +64,24 @@ def NMEA_poloha (NMEA_veta):
         if stav == 'A':
             return sirka, dlzka, True
 
+# Odvysiela sigfox spravu najviac 14 bajtov
+#
+def sigfox_poslat (sprava):
+    if len (sprava) % 2 == 1:
+        sprava = sprava + '0'
+    s.send(sprava)
+
 
 # Sigfox sigfox_inicializacia
 #
 def sigfox_init(a):
+
     global s
-​    # init Sigfox for RCZ1 (Europe)
+
     sigfox = Sigfox(mode=Sigfox.SIGFOX, rcz=Sigfox.RCZ1)
-​    # create a Sigfox socket
+
     s = socket.socket(socket.AF_SIGFOX, socket.SOCK_RAW)
-​    # make the socket blocking
+
     s.setblocking(True)
-​    # configure it as uplink only
+
     s.setsockopt(socket.SOL_SIGFOX, socket.SO_RX, False)
