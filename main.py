@@ -1,4 +1,4 @@
-import pyco,os
+import pycoco,os
 import sys
 import pycom
 
@@ -10,7 +10,7 @@ import deepsleep
 
 
 
-print (deepsleep.PIN_WAKE)
+print ('zxc',deepsleep.PIN_WAKE, pycoco.ZLTA)
 
 #print(os.uname())
 #print ('----------------')

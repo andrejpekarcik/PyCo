@@ -2,10 +2,12 @@ import os
 import sys
 import pycom
 
+__version__ = '1.0.0'
+
 cervena = 0x7f0000
 zelena = 0x00FF00
 modra = 0x0000FF
-zlta = 0x7f7f00
+ZLTA = 0x7f7f00
 
 # Overi ci NMEA veta a checksum sedia, vracia True, False
 #

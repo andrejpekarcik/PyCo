@@ -5,11 +5,11 @@ import gc
 
 __version__ = '1.0.5'
 
-
+ZLTA = 0x01
 PIN_MASK = 0b1010
 COMM_PIN = 'P10'
 
-PIN_WAKE = 1551
+PIN_WAKE = 1
 TIMER_WAKE = 1 << 4
 POWER_ON_WAKE = 1 << 5
 
