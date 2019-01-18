@@ -9,7 +9,7 @@ __version__ = '1.0.5'
 PIN_MASK = 0b1010
 COMM_PIN = 'P10'
 
-PIN_WAKE = 0
+PIN_WAKE = 01551
 TIMER_WAKE = 1 << 4
 POWER_ON_WAKE = 1 << 5
 

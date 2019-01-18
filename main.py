@@ -10,10 +10,10 @@ import deepsleep
 
 
 
-print (deepsleep.PIN_WAKE)
+#print (deepsleep.PIN_WAKE)
 
-print(os.uname())
-print ('----------------')
+#print(os.uname())
+#print ('----------------')
 
 pyco.sigfox_init(0)
 pyco.sigfox_poslat(123)
