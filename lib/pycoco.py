@@ -64,12 +64,7 @@ def NMEA_poloha (NMEA_veta):
         if stav == 'A':
             return sirka, dlzka, True
 
-# Odvysiela sigfox spravu najviac 14 bajtov
-#
-def sigfox_poslat (sprava):
-    if len (sprava) % 2 == 1:
-        sprava = sprava + '0'
-    s.send(sprava)
+
 
 
 # Sigfox sigfox_inicializacia
@@ -85,3 +80,11 @@ def sigfox_init(a):
     s.setblocking(True)
 
     s.setsockopt(socket.SOL_SIGFOX, socket.SO_RX, False)
+
+    return s
+
+
+# Odvysiela sigfox spravu najviac 14 bajtov
+#
+def sigfox_poslat (sprava,s):
+    s.send(sprava)

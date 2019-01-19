@@ -8,15 +8,27 @@ from machine import UART
 import time
 import deepsleep
 
+# Sigfox sigfox_inicializacia
+#
+def sigfox_init(a):
 
+    global s
 
-print ('zxc', pycoco.ZLTA)
+    sigfox = Sigfox(mode=Sigfox.SIGFOX, rcz=Sigfox.RCZ1)
 
-#print(os.uname())
-#print ('----------------')
+    s = socket.socket(socket.AF_SIGFOX, socket.SOCK_RAW)
 
-pycoco.sigfox_init(0)
-pycoco.sigfox_poslat(123)
+    s.setblocking(True)
+
+    s.setsockopt(socket.SOL_SIGFOX, socket.SO_RX, False)
+
+    return s
+
+print(os.uname())
+print ('----------------')
+
+sigfox_init(0)
+s.send(11)
 
 # Vypnut LED
 pycom.heartbeat(False)
