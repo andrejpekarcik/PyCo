@@ -13,6 +13,29 @@ zelena = 0x00FF00
 modra = 0x0000FF
 zlta = 0x7f7f00
 
+
+# Sigfox sigfox_inicializacia
+#
+def sigfox_init():
+
+    global s
+
+    sigfox = Sigfox(mode=Sigfox.SIGFOX, rcz=Sigfox.RCZ1)
+
+    s = socket.socket(socket.AF_SIGFOX, socket.SOCK_RAW)
+
+    s.setblocking(True)
+
+    s.setsockopt(socket.SOL_SIGFOX, socket.SO_RX, False)
+
+    return s
+
+# Sigfox posli cosi
+#
+
+def sigfox_posli(cosi):
+    s.send(cosi)
+
 # Overi ci NMEA veta a checksum sedia, vracia True, False
 #
 
@@ -63,11 +86,6 @@ def NMEA_poloha (NMEA_veta):
 
         if stav == 'A':
             return sirka, dlzka, True
-
-
-
-
-
 
 
 # Odvysiela sigfox spravu najviac 14 bajtov
