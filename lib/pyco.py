@@ -31,7 +31,6 @@ def sigfox_posli(cosi):
 
 # Overi ci NMEA veta a checksum sedia, vracia True, False
 #
-
 def NMEAchecksum(NMEA_veta):
 
     # odstranim ' a 'b'
