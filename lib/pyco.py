@@ -17,24 +17,16 @@ zlta = 0x7f7f00
 # Sigfox sigfox_inicializacia
 #
 def sigfox_init():
-
     global s
-
     sigfox = Sigfox(mode=Sigfox.SIGFOX, rcz=Sigfox.RCZ1)
-
     s = socket.socket(socket.AF_SIGFOX, socket.SOCK_RAW)
-
     s.setblocking(True)
-
     s.setsockopt(socket.SOL_SIGFOX, socket.SO_RX, False)
-
     return s
 
 # Sigfox posli cosi
 #
-
 def sigfox_posli(cosi):
-    global s
     s.send(cosi)
 
 # Overi ci NMEA veta a checksum sedia, vracia True, False

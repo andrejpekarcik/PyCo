@@ -8,13 +8,10 @@ import socket
 from machine import UART
 import time
 
+print ('-SiPy start------------------------------------------------------------')
 
-
-print(os.uname())
-print ('----------------')
-
-pyco.sigfox_init()
-pyco.sigfox_posli (1231231)
+sigfox = pyco.sigfox_init()
+pyco.sigfox_posli ('9999')
 
 # Vypnut LED
 pycom.heartbeat(False)
