@@ -77,10 +77,6 @@ def NMEA_poloha (NMEA_veta):
         if stav == 'A':
             return sirka, dlzka, True
         else:
-            return False, False, False
+            return None, None, False
 
-
-# Odvysiela sigfox spravu najviac 14 bajtov
-#
-def sigfox_poslat (sprava,s):
-    s.send(sprava)
+    return None, None, False
