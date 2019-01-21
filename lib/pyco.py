@@ -34,6 +34,7 @@ def sigfox_init():
 #
 
 def sigfox_posli(cosi):
+    global s
     s.send(cosi)
 
 # Overi ci NMEA veta a checksum sedia, vracia True, False
