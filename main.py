@@ -26,27 +26,16 @@ pycom.rgbled(pyco.zlta)
 print ('--SiPy------------------------------------------------------------------')
 
 while True:
-    a = uart.readline()
-    NMEA , NMEA_stav = pyco.NMEAchecksum (a)
+    raw_gps_data = uart.readline()
+    NMEA , NMEA_stav = pyco.NMEAchecksum (raw_gps_data)
     if NMEA_stav:
-        if 'GPRMC' in NMEA:
-            print(NMEA)
-            veta = NMEA.split(',')
-            print (veta)
-            stav = veta[2]
-            sirka = veta[3].replace('.','')[:10]
-            dlzka = veta[5].replace('.','')[:10]
-
-            print (stav, sirka, dlzka, len (sirka), len (dlzka))
-            print (sirka + dlzka)
-
-            if stav == 'A':
-                pycom.rgbled(pyco.zelena)
-                #sigfox_poslat (sirka)
-                time.sleep(5)
-                pyco.sigfox_poslat(sirka)
-                pyco.sigfox_poslat(dlzka)
-
-                time.sleep (40)
-            else:
-                pycom.rgbled(pyco.modra)
+        poloha_stav = pyco.NMEA_poloha (NMEA)
+        print (poloha_stav)
+        if poloha_stav == 'A':
+            pycom.rgbled(pyco.zelena)
+            time.sleep(5)
+            pyco.sigfox_poslat(sirka)
+            pyco.sigfox_poslat(dlzka)
+            time.sleep (40)
+        else:
+            pycom.rgbled(pyco.modra)

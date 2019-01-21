@@ -31,6 +31,7 @@ def sigfox_posli(cosi):
 
 # Overi ci NMEA veta a checksum sedia, vracia True, False
 #
+
 def NMEAchecksum(NMEA_veta):
 
     # odstranim ' a 'b'
@@ -67,17 +68,16 @@ def NMEAchecksum(NMEA_veta):
 #
 
 def NMEA_poloha (NMEA_veta):
-    if 'GPRMC' in NMEA:
-        veta = NMEA.split(',')
+    if 'GPRMC' in NMEA_veta:
+        veta = NMEA_veta.split(',')
         stav = veta[2]
         sirka = veta[3].replace('.','')[:10]
         dlzka = veta[5].replace('.','')[:10]
 
-        #print (stav, sirka, dlzka, len (sirka), len (dlzka))
-        #print (sirka + dlzka)
-
         if stav == 'A':
             return sirka, dlzka, True
+        else:
+            return False, False, False
 
 
 # Odvysiela sigfox spravu najviac 14 bajtov
