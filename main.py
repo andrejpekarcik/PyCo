@@ -2,8 +2,6 @@ import pyco
 import os
 import sys
 import pycom
-from deepsleep import DeepSleep
-import deepsleep
 from machine import Timer
 import time
 
@@ -16,14 +14,13 @@ import time
 cas_medzi_meraniami = 3600
 
 # Pauza pred meranim GPS
-pauza_pred_GPS = 0.1
+pauza_pred_GPS = 0.01
 
 # Ako dlho sa ma pokusat precitat GPS v sekundach
 max_cas_pre_gps = 300
 
 print ('-SiPy start------------------------------------------------------------')
 
-ds = DeepSleep()
 stopky_pre_GPS = Timer.Chrono()
 
 sigfox = pyco.sigfox_init()
@@ -51,7 +48,10 @@ while True:
 
     if (lap > max_cas_pre_gps):
         stopky_pre_GPS.stop()
-        ds.go_to_sleep(cas_medzi_meraniami)
+        print ("Idem spat")
+        time.sleep(cas_medzi_meraniami)
+        print ("Som hore")
+        stopky_pre_GPS.reset()
 
     print (lap)
 
@@ -60,12 +60,14 @@ while True:
 
     if NMEA_stav:
         sirka, dlzka, poloha_stav = pyco.NMEA_poloha (NMEA)
-        print ("Poloha stav:",poloha_stav)
         if poloha_stav:
             pycom.rgbled(pyco.zelena)
+
             pyco.sigfox_posli(sirka)
             pyco.sigfox_posli(dlzka)
+
             stopky_pre_GPS.stop()
-            ds.go_to_sleep(cas_medzi_meraniami)
+            time.sleep(cas_medzi_meraniami)
+            stopky_pre_GPS.reset()
         else:
             pycom.rgbled(pyco.modra)
