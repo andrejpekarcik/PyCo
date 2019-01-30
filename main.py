@@ -11,13 +11,13 @@ from machine import UART
 import time
 
 # Kolko ma hlboko spat medzi cas medzi meraniami v sekundach
-cas_medzi_meraniami = 3600
+cas_medzi_meraniami = 20
 
 # Pauza pred meranim GPS
 pauza_pred_GPS = 0.01
 
 # Ako dlho sa ma pokusat precitat GPS v sekundach
-max_cas_pre_gps = 300
+max_cas_pre_gps = 600
 
 print ('-SiPy start------------------------------------------------------------')
 
