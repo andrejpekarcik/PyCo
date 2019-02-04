@@ -11,7 +11,7 @@ from machine import UART
 import time
 
 # Kolko ma hlboko spat medzi cas medzi meraniami v sekundach
-cas_medzi_meraniami = 20
+cas_medzi_meraniami = 3600
 
 # Pauza pred meranim GPS
 pauza_pred_GPS = 0.01
@@ -23,7 +23,7 @@ print ('-SiPy start------------------------------------------------------------'
 
 stopky_pre_GPS = Timer.Chrono()
 
-sigfox = pyco.sigfox_init()
+pyco.sigfox_init()
 
 # Vypnut LED
 pycom.heartbeat(False)
@@ -35,7 +35,9 @@ uart.init(9600, bits=8, parity=None, stop=1, pins=('P23','P22'), timeout_chars=5
 
 pycom.rgbled(pyco.zlta)
 
-print ('--SiPy------------------------------------------------------------------')
+print ('x--SiPy------------------------------------------------------------------')
+
+pyco.sigfox_posli('123')
 
 while True:
 

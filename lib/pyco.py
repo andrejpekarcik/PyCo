@@ -22,7 +22,6 @@ def sigfox_init():
     s = socket.socket(socket.AF_SIGFOX, socket.SOCK_RAW)
     s.setblocking(True)
     s.setsockopt(socket.SOL_SIGFOX, socket.SO_RX, False)
-    return s
 
 # Sigfox posli cosi
 #
