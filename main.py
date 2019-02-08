@@ -51,7 +51,7 @@ while True:
     if (lap > max_cas_pre_gps):
         stopky_pre_GPS.stop()
         print ("Idem spat")
-        time.sleep(cas_medzi_meraniami)
+        time.sleep(max_cas_pre_gps)
         print ("Som hore")
         stopky_pre_GPS.reset()
 
