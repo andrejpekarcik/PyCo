@@ -1,10 +1,11 @@
 import pyco
+import deepsleep
+
 import os
 import sys
 import pycom
 from machine import Timer
 import time
-import deepsleep
 
 from network import Sigfox
 import socket
