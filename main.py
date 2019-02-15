@@ -24,6 +24,8 @@ print ('-SiPy start------------------------------------------------------------'
 
 stopky_pre_GPS = Timer.Chrono()
 
+ds = DeepSleep()
+
 pyco.sigfox_init()
 
 # Vypnut LED
@@ -70,7 +72,7 @@ while True:
             pyco.sigfox_posli(dlzka)
 
             stopky_pre_GPS.stop()
-            time.sleep(cas_medzi_meraniami)
+            ds.go_to_sleep(cas_medzi_meraniami)
             stopky_pre_GPS.reset()
         else:
             pycom.rgbled(pyco.modra)
