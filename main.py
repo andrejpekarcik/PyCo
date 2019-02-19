@@ -25,7 +25,7 @@ print ('-SiPy start------------------------------------------------------------'
 
 stopky_pre_GPS = Timer.Chrono()
 
-ds = DeepSleep()
+ds = deepsleep.DeepSleep()
 
 pyco.sigfox_init()
 
